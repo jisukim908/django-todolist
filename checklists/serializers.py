@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from checklists.models import Todolist
+from django.utils import timezone
 
 class TodolistSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
@@ -26,4 +27,4 @@ class TodolistListSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Todolist
-        fields = ("pk", "title", "user", "created_at", "updated_at", "is_complete")
+        fields = '__all__'

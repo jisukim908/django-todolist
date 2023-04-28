@@ -4,6 +4,7 @@ from rest_framework import status, permissions
 from rest_framework.response import Response
 from checklists.models import Todolist
 from checklists.serializers import TodolistSerializer, TodolistCreateSerializer, TodolistListSerializer
+from django.utils import timezone
 
 # Create your views here.
 class TodolistView(APIView):
@@ -47,7 +48,10 @@ class TodolistDetailView(APIView):
         if request.user == todolist.user:
             serializer = TodolistCreateSerializer(todolist, data=request.data)
             if serializer.is_valid():
-                serializer.save()
+                if request.data.get("is_complete") == "True":
+                    serializer.save(completion_at=timezone.now())
+                else:
+                    serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
