@@ -8,6 +8,7 @@ class Todolist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_complete = models.BooleanField(default=False)
+    completion_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.title} | {self.user} | {self.is_complete}'
