@@ -20,6 +20,11 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
 
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = ("password",)
+
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -33,4 +38,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # Add custom claims
         token['email'] = user.email
+        token['name'] = user.name
+        token['gender'] = user.gender
+        token['age'] = user.age
         return token
