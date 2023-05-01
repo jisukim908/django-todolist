@@ -17,4 +17,6 @@ TODOLIST
 1. 작성자 본인만 조회, 수정, 삭제 가능
 2. JWT 방식: access 토큰, email, name, gender, age 정보담기
 
+
+- ERD
 ![ERD](https://user-images.githubusercontent.com/126075796/235397784-5a6ac4ad-2145-4905-a63a-89df24b86421.png)
