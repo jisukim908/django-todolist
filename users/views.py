@@ -39,8 +39,7 @@ class UserInformationView(APIView):
             return Response({"message":"로그인해주세요."},401)
         
         user = get_object_or_404(User,id=user_id)
-        current_user= request.user
-        if current_user.id == user_id:
+        if (request.user).id == user_id:
             serializer = UserUpdateSerializer(user, data = request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -55,15 +54,20 @@ class UserInformationView(APIView):
         if not request.user.is_authenticated:
             return Response({"message":"로그인해주세요."},401)
         
-        user = get_object_or_404(User,id=user_id)
-        current_user= request.user
-        if current_user.id == user_id:
-           user.delete()
+        if (request.user).id == user_id:
+           user = request.user
+           user.is_active == False
+           user.save()
+           # 회원 탈퇴한다고 유저정보를 삭제하지는 않는다..!
+           # user = get_object_or_404(User,id=user_id)
+           # user.delete() 
+           # 이렇게 사용하지 않는다.
+           # 보통 비활성화를 한다.
            return Response("탈퇴했습니다.", status=status.HTTP_204_NO_CONTENT)
         else:
             return Response("권한이 없습니다.", status=status.HTTP_403_FORBIDDEN)
             
-
+    # 휴면계정과 탈퇴계정 구분하는 것도 생각해볼만 하다.
 
 # customize token
 class CustomTokenObtainPairView(TokenObtainPairView):

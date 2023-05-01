@@ -16,7 +16,7 @@ class TodolistSerializer(serializers.ModelSerializer):
 class TodolistCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todolist
-        fields = ("title", "is_complete")
+        fields = ("title", "is_complete", "completion_at")
     
 
 class TodolistListSerializer(serializers.ModelSerializer):

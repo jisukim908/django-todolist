@@ -32,10 +32,9 @@ class TodolistDetailView(APIView):
     def get(self, request):
         if not request.user.is_authenticated:
             return Response({"message":"로그인해주세요."},401)
-        current_user = request.user
         # 여러개의 todolist를 가지고와야하니까 get_object를 쓰면 오류가 난다.
         # get_object 는 한 개를 가지고온다.
-        todolists = Todolist.objects.filter(user_id = current_user.id)
+        todolists = Todolist.objects.filter(user_id = (request.user).id)
         serializer = TodolistListSerializer(todolists, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
