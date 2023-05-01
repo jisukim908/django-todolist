@@ -10,12 +10,14 @@
 <br>
   
 <TODOLIST>
+  
 1. 만들기<br>
 2. 전체 목록 조회<br>
 3. 자신의 목록 조회<br>
 4. 수정 및 삭제<br>
 
 <추가기능>
+  
 1. 작성자 본인만 조회, 수정, 삭제 가능<br>
 2. JWT 방식: access 토큰, email, name, gender, age 정보담기<br>
 
