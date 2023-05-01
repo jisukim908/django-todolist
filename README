@@ -16,8 +16,3 @@ TODOLIST
 추가기능
 1. 작성자 본인만 조회, 수정, 삭제 가능
 2. JWT 방식: access 토큰, email, name, gender, age 정보담기
-
-
-- ERD
-
-<img width = "80%" src = "https://github.com/jisukim908/django-todolist/issues/8#issue-1690315750"/>
